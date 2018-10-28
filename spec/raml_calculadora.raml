@@ -1,0 +1,93 @@
+#%RAML 1.0
+title: Calculadora
+version: v1.0
+baseUri: http://127.0.0.1:3000/calculadora
+
+types:   
+
+/sum/*:
+  description: "Sumar 2 o mas valores"
+  get:
+    description: "Operación de suma de números"
+    responses: 
+      200:
+        description: "Operación exitosa"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "El resultado de la suma es: {resultado}"
+      400:
+        description: "Bad Request error"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "Bad Request error"
+/res/*:
+  description: "Restar 2 o mas valores"
+  get:
+    description: "Operación de resta de números"
+    responses: 
+      200:
+        description: "Operación exitosa"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "El resultado de la resta es: {resultado}"
+      400:
+        description: "Bad Request error"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "Bad Request error"
+/mul/*:
+  description: "Multiplicar 2 o mas valores"
+  get:
+    description: "Operación de multiplicació de números"
+    responses: 
+      200:
+        description: "Operación exitosa"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "El resultado de la multiplicació es: {resultado}"
+      400:
+        description: "Bad Request error"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "Bad Request error"
+/div/{dividendo}/{divisor}:
+  description: "Divisió de 2 nmeros"
+  /{dividendo}:
+   uriParameters:
+     dividendo:
+       displayName: Dividendo
+       type: integer
+  /{divisor}:
+   uriParameters:
+     divisor:
+       displayName: Divisor
+       type: integer
+  get:
+    description: "Operación de división de 2 números"
+    responses: 
+      200:
+        description: "Operación exitosa"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "El resultado de la división es: {resultado}"
+      400:
+        description: "Bad Request error"
+        body: 
+          application/json:
+            type: string
+            example: |
+              "Bad Request error"

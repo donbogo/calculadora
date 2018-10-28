@@ -1,0 +1,111 @@
+swagger: "2.0"
+info:
+  description: "Servicio de calculadora con operaciones básicas de suma, resta, multiplicación y división. Servicio configurado para ser desplegado con docker."
+  version: "1.0.0"
+  title: "Calculadora"
+  contact:
+    email: "donbogo@hotmail.com"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+host: "localhost:3000"
+basePath: "/calculadora"
+tags:
+- name: "calculadora"
+  description: "Calculadora básica"
+schemes:
+- "http"
+paths:
+  /sum/*:
+    get:
+      tags:
+      - "suma"
+      summary: "Sumar 2 o mas valores"
+      description: "Operación de suma de números"
+      operationId: "sum"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Resultado de la operación"
+          schema:
+            $ref: "#/definitions/Sum"
+              
+        400:
+          description: "Bad Request error"
+          
+  /res/*:
+    get:
+      tags:
+      - "resta"
+      summary: "Restar 2 o mas valores"
+      description: "Operación de resta de números"
+      operationId: "res"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Resultado de la operación"
+          schema:
+            $ref: "#/definitions/Res"
+        400:
+          description: "Bad Request error"
+          
+  /mul/*:
+    get:
+      tags:
+      - "multiplicación"
+      summary: "Multiplicar 2 o más números"
+      description: "Operación de multiplicación de números"
+      operationId: "mul"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Resultado de la operación"
+          schema:
+            $ref: "#/definitions/Mul"
+        400:
+          description: "Bad Request error"
+          
+  /div/{dividendo}/{divisor}:
+    get:
+      tags:
+      - "división"
+      summary: "División de 2 números"
+      description: "Operación de división de números"
+      operationId: "div"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dividendo"
+        in: "path"
+        description: "Dividendo"
+        required: true
+        type: "integer"
+      - name: "divisor"
+        in: "path"
+        description: "Divisor"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Resultado de la operación"
+          schema:
+            $ref: "#/definitions/Div"
+        400:
+          description: "Bad Request error"
+
+definitions:
+  Sum:
+    type: "string"
+    example: "El resultado de la suma es: {resultado}"
+  Res:
+    type: "string"
+    example: "El resultado de la resta es: {resultado}"
+  Mul:
+    type: "string"
+    example: "El resultado de la multiplicación es: {resultado}"
+  Div:
+    type: "string"
+    example: "El resultado de la división es: {resultado}"
